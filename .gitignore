@@ -1,0 +1,5 @@
+.zig-cache
+zig-out
+packed/blob.binary
+src/blob_index.zig
+src/blob_init.zig
