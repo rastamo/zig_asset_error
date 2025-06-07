@@ -51,14 +51,13 @@ pub fn build(b: *B) !void {
         .root_module = root_module,
     });
 
-    b.installArtifact(exe);
-
     // Add the blob to the executable
     const blob_path = try std.fs.path.join(b.allocator, &.{ "packed", "blob.binary" });
     exe.root_module.addAnonymousImport("blob", .{
         .root_source_file = b.path(blob_path),
     });
 
+    b.installArtifact(exe);
     const run_exe = b.addRunArtifact(exe);
     const run_step = b.step("run", "Run the application");
     run_step.dependOn(&run_exe.step);
